@@ -15,19 +15,15 @@ export class ProfileHeaderService {
 
   async getProfileHeader(page: Page): Promise<ProfileHeaderResponse> {
 
-    const url = process.env.APP_LINKEDIN_PROFILE_URL
-    const cookie = process.env.APP_LINKEDIN_COOKIE
-    const linkedinUrl = process.env.APP_LINKEDIN_URL
-
-    this.validateProfileUrl(url)
+    this.validateProfileUrl(this.url)
 
     await page.setCookie({
       name: "li_at",
-      value: cookie,
-      url: linkedinUrl,
+      value: this.cookie,
+      url: this.linkedinUrl,
     })
 
-    await page.goto(url)
+    await page.goto(this.url)
 
     const selectors = profileHeaderSelectors
 
