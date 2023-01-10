@@ -17,6 +17,7 @@ export class LogService {
   }
 
   debug(...args: any[]) {
+    if(process.env.NODE_ENV !== 'development') return;
     console.info(`\x1b[1;37m[${this.now}] \x1b[0m \x1b[1;33m${this.name}\x1b[0m -> `, ...args)
   }
   
