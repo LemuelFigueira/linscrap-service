@@ -1,42 +1,16 @@
 import { Page } from "puppeteer"
+import { profileExperienceSelectors } from "../selectors/ProfileExperienceSelectors";
 
 export class ProfileExperienceService {
 
-  profileUrl: string;
-  cookie: string;
-  linkedinUrl: string;
-  experiencePath: string;
+  private profileUrl: string;
+  private linkedinUrl: string;
+  private experiencePath: string;
 
-  constructor() {
-    this.profileUrl = process.env.APP_LINKEDIN_PROFILE_URL || "Falta Url"
+  constructor(userName: string, private cookie: string) {
     this.experiencePath = process.env.APP_LINKEDIN_PROFILE_EXPERIENCE_PATH || "Falta experiencePath"
-    this.cookie = process.env.APP_LINKEDIN_COOKIE || "Falta cookie"
     this.linkedinUrl = process.env.APP_LINKEDIN_URL || "Falta linkedinUrl"
-  }
-
-
-  getSelectors(): ProfileExperienceSelectors {
-    return {
-      experiences: "main section ul.pvs-list",
-      multipleExperiences: "div.pvs-entity div:nth-child(2) > div:nth-child(2) > ul.pvs-list > li > div.pvs-list__container > div.scaffold-finite-scroll > div > ul.pvs-list",
-      multipleExperience: {
-        companyBadge: "div.pvs-entity div:nth-child(1) > a > div > div > img",
-        companyName: "div.pvs-entity div:nth-child(2) > div:nth-child(1) span:nth-child(1) span",
-        fullTime: "div.pvs-entity > div:nth-child(2) > div:nth-child(1) span:nth-child(2) span",
-        workTime: "div.pvs-entity > div:nth-child(2) > div:nth-child(1) > a > span > span",
-        details: "div.pvs-entity > div:nth-child(2) > div:nth-child(2) > ul",
-        jobTitle: "div.pvs-entity > div:nth-child(2) > div:nth-child(1) span:nth-child(1) span",
-        location: "div.pvs-entity > div:nth-child(2) > div:nth-child(1) span:nth-child(3) span",
-      },
-      experience: {
-        companyName: "div.pvs-entity div:nth-child(2) > div:nth-child(1) > div:nth-child(1) span:nth-child(2) span",
-        jobTitle: "div.pvs-entity div:nth-child(2) > div:nth-child(1) > div:nth-child(1) span:nth-child(1) span",
-        companyBadge: "div.pvs-entity div:nth-child(1) > a > div > div > img",
-        workTime: "div.pvs-entity div:nth-child(2) > div:nth-child(1) > div:nth-child(1) span:nth-child(3) span",
-        location: "div.pvs-entity div:nth-child(2) > div:nth-child(1) > div:nth-child(1) span:nth-child(4) span",
-        details: "div.pvs-entity div:nth-child(2) > div:nth-child(2) > ul"
-      }
-    }
+    this.profileUrl = `${this.linkedinUrl}/in/${userName}`
   }
 
   getProfileExperience = async (page: Page): Promise<ProfileExperienceResponse[]> => {
@@ -54,7 +28,7 @@ export class ProfileExperienceService {
     await page.goto(url)
 
   
-    const selectors: ProfileExperienceSelectors = this.getSelectors()
+    const selectors: ProfileExperienceSelectors = profileExperienceSelectors
   
     await Promise.all([page.waitForSelector(selectors.experiences)])
     await Promise.all([page.waitForSelector(selectors.experience.companyName)])

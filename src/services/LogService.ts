@@ -9,20 +9,20 @@ export class LogService {
   }
 
   info(...args: any[]) {
-    console.info(`\x1b[1;37m[${this.now}] \x1b[0m \x1b[1;36m${this.name}\x1b[0m -> `, ...args)
+    console.info(`\x1b[1;37m[${this.now}]\x1b[0m \x1b[1;36m${this.name}\x1b[0m -> `, ...args)
   }
 
   error(...args: any[]) {
-    console.info(`\x1b[1;37m[${this.now}] \x1b[0m \x1b[1;31m${this.name}\x1b[0m -> `, ...args)
+    console.info(`\x1b[1;37m[${this.now}]\x1b[0m \x1b[1;31m${this.name}\x1b[0m -> `, ...args)
   }
 
   debug(...args: any[]) {
     if(process.env.NODE_ENV !== 'development') return;
-    console.info(`\x1b[1;37m[${this.now}] \x1b[0m \x1b[1;33m${this.name}\x1b[0m -> `, ...args)
+    console.info(`\x1b[1;37m[${this.now}]\x1b[0m \x1b[1;33m${this.name}\x1b[0m -> `, ...args)
   }
   
   log(...args: any[]) {
-    console.info(`\x1b[1;37m[${this.now}] \x1b[0m \x1b[1;37m${this.name}\x1b[0m -> `, ...args)
+    console.info(`\x1b[1;37m[${this.now}]\x1b[0m \x1b[1;37m${this.name}\x1b[0m -> `, ...args)
   }
 
   private get now() {
