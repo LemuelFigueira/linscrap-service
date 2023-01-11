@@ -24,7 +24,12 @@ router.get('/header/:userName', async (req, res) => {
 
     if (errorService.hasErrors()) throw new Error(errorService.getErrors())
 
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+      executablePath: await chrome.executablePath,
+      headless: true,
+      args: chrome.args.concat(['--no-sandbox']),
+      ignoreDefaultArgs: ['--disable-extensions']
+    })
 
     log.debug(ApiConstants.STARTING_BROWSER)
 
@@ -63,7 +68,12 @@ router.get('/experiences/:userName', async (req, res) => {
 
     if (errorService.hasErrors()) throw new Error(errorService.getErrors())
 
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+      executablePath: await chrome.executablePath,
+      headless: true,
+      args: chrome.args.concat(['--no-sandbox']),
+      ignoreDefaultArgs: ['--disable-extensions']
+    })
 
     log.debug(ApiConstants.STARTING_BROWSER)
 
