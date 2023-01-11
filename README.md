@@ -20,7 +20,7 @@ de acordo com o conteúdo do respectivo arquivo.
 
 ## **`Compilação`**
 
-Após executar os métodos anteriores com êxito, rode o seguinte comando para compilar o código na pasta `dist` na raíz do projeto.
+Após executar os métodos anteriores com êxito, rode o seguinte comando para compilar o código na pasta `public` na raíz do projeto.
 
 ```bash
 yarn build
