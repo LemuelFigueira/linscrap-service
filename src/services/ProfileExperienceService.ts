@@ -1,5 +1,5 @@
 import { Page } from "puppeteer"
-import { profileExperienceSelectors } from "../selectors/ProfileExperienceSelectors";
+import { profileExperienceSelectors } from "@selectors/ProfileExperienceSelectors";
 
 export class ProfileExperienceService {
 

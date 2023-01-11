@@ -1,5 +1,5 @@
 import { app } from "./server";
-import { LogService } from "./services/LogService";
+import { LogService } from "@services/LogService";
 
 require('dotenv').config()
 

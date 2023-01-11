@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { LogService } from "../services/LogService";
-import { ProfileExperienceService } from "../services/ProfileExperienceService";
-import { ProfileHeaderService } from "../services/ProfileHeaderService";
-import { ApiConstants } from "../utils/ApiConstants";
+import { LogService } from "@services/LogService";
+import { ProfileExperienceService } from "@services/ProfileExperienceService";
+import { ProfileHeaderService } from "@services/ProfileHeaderService";
+import { ApiConstants } from "@utils/ApiConstants";
 import puppeteer from "puppeteer";
-import { ErrorService } from "../services/ErrorService";
+import { ErrorService } from "@services/ErrorService";
 
 const router = Router();
 

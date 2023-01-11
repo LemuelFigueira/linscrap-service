@@ -1,5 +1,5 @@
 import express from 'express';
-import { profileRouter } from './routes/ProfileRoute';
+import { profileRouter } from '@routes/ProfileRoute';
 
 const app = express();
 

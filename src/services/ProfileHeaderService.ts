@@ -1,5 +1,5 @@
 import { Page } from "puppeteer";
-import { profileHeaderSelectors } from "../selectors/ProfileHeaderSelectors";
+import { profileHeaderSelectors } from "@selectors/ProfileHeaderSelectors";
 
 export class ProfileHeaderService {
 
