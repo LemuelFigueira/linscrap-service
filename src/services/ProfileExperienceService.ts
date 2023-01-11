@@ -34,7 +34,7 @@ export class ProfileExperienceService {
     await Promise.all([page.waitForSelector(selectors.experience.companyName)])
   
     const experiences = await page.$eval(selectors.experiences, (el, params) => {
-      const { selectors } = params
+      const { selectors } = params as { selectors: ProfileExperienceSelectors }
   
       const result = []
   

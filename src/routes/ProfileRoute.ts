@@ -3,7 +3,9 @@ import { LogService } from "@services/LogService";
 import { ProfileExperienceService } from "@services/ProfileExperienceService";
 import { ProfileHeaderService } from "@services/ProfileHeaderService";
 import { ApiConstants } from "@utils/ApiConstants";
-import puppeteer from "puppeteer";
+import { Page } from 'puppeteer'
+import chrome from "chrome-aws-lambda";
+const puppeteer = chrome.puppeteer
 import { ErrorService } from "@services/ErrorService";
 
 const router = Router();
@@ -32,12 +34,12 @@ router.get('/header/:userName', async (req, res) => {
 
     const service = new ProfileHeaderService(userName, cookie)
 
-    const promise = service.getProfileHeader(page)
+    const promise = service.getProfileHeader(page as unknown as Page)
 
     log.debug(ApiConstants.RETRIEVING_PERFIL_HEADER)
 
     const [header] = await Promise.all([promise])
-    
+
     browser.close()
 
     return res.status(200).json(header)
@@ -71,7 +73,7 @@ router.get('/experiences/:userName', async (req, res) => {
 
     const service = new ProfileExperienceService(userName, cookie)
 
-    const promise = service.getProfileExperience(page)
+    const promise = service.getProfileExperience(page as unknown as Page)
 
     log.debug(ApiConstants.RETRIEVING_PERFIL_EXPERIENCES)
 

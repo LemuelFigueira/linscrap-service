@@ -33,8 +33,6 @@ export class ProfileHeaderService {
     }
     await Promise.all(pageSelectorsPromises)
 
-
-
     const userName = await page.$eval(selectors.userName, (el) => el.textContent?.replace('\n', '').trim())
     const jobTitle = await page.$eval(selectors.jobTitle, (el) => el.textContent?.replace('\n', '').trim())
     const location = await page.$eval(selectors.location, (el) => el.textContent?.replace('\n', '').trim())
